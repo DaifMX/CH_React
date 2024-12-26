@@ -1,0 +1,7 @@
+.item-list-container{
+  display: flex;
+  background-color: black;
+  font-weight: Bold;
+  color: white;
+  justify-content: center;
+}
