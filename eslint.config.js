@@ -11,6 +11,7 @@ export default [
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parser: "babel-eslint",
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },

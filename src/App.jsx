@@ -1,20 +1,32 @@
 import './App.css'
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Layout from './components/Layout/Layout'
-import ItemListContainer from './components/Navbar/CartWidget/ItemListContainer';
+import CartContainer from './components/Navbar/CartWidget/CartContainer'
+import ProductListContainer from './components/ProductListContainer/ProductListContainer';
+import ProductDetailContainer from './components/ProductDetailContainer/ProductDetailContainer'
+
+import { CssBaseline } from '@mui/material';
+import darkTheme from './themes/darkTheme';
+import { ThemeProvider } from '@emotion/react';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<h1>HOME</h1>}/>
-          <Route path="cart" element={<ItemListContainer />} />
-          <Route path="*" element={<h1>Error</h1>} />
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<ProductListContainer />} />
+            <Route path="product/:productId" element={<ProductDetailContainer />} />
+            <Route path="category/:categoryId" element={<ProductListContainer />} />
+            <Route path="cart" element={<CartContainer />} />
+            <Route path="*" element={<h1>Error: 404</h1>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

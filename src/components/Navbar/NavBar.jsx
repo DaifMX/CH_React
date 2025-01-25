@@ -16,15 +16,25 @@ import CartWidget from './CartWidget/CartWidget'
 
 import { useNavigate } from 'react-router-dom';
 
-const pages = ['Rines', 'Turbos & Supercargadores', 'Suspensión', 'Escapes', 'Filtros', 'Frenos', 'Interiores', 'Exteriores'];
+const pages = [
+  ['rines', 'Rines'],
+  ['cargadores', 'Turbos & Supercargadores'],
+  ['suspension', 'Suspensión'],
+  ['escapes', 'Escapes'],
+  ['filtros', 'Filtros'],
+  ['frenos', 'Frenos'],
+  ['interiores', 'Interior'],
+  ['exteriores', 'Exteriores'],
+];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+
   const navigate = useNavigate()
-  
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -41,7 +51,12 @@ function ResponsiveAppBar() {
   };
 
   const handleCart = () => {
-    navigate("/cart")
+    navigate("/cart");
+  };
+
+  const handleCategory = () => {
+    console.log('This is a test');
+    navigate("/")
   }
 
   return (
@@ -96,9 +111,9 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={page} onClick={() => navigate(`/category/${page[0]}`)}>
+                  <Typography sx={{ textAlign: 'center' }}>{page[1]}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -124,18 +139,18 @@ function ResponsiveAppBar() {
             DAIF AUTOPARTES
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "center", fontWeight: "700" }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page[0]}
+                onClick={() => navigate(`/category/${page[0]}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page[1]}
               </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, width: "20%", display: "flex", justifyContent: "right" }}>
-            <CartWidget handleCart={handleCart}/>
+            <CartWidget handleCart={handleCart} />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ width: 35, height: 35 }} />
@@ -166,8 +181,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-
-
         </Toolbar>
       </Container>
     </AppBar>
