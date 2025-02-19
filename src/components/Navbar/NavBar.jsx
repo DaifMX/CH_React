@@ -23,7 +23,7 @@ const pages = [
   ['escapes', 'Escapes'],
   ['filtros', 'Filtros'],
   ['frenos', 'Frenos'],
-  ['interiores', 'Interior'],
+  ['interiores', 'Interiores'],
   ['exteriores', 'Exteriores'],
 ];
 

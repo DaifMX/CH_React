@@ -11,9 +11,9 @@ import Stack from '@mui/material/Stack';
 
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductsInfo({ props }) {
+export default function ProductsCard({ props }) {
   const navigate = useNavigate();
-  const handleDetailsBtn = () => navigate((`/product/${props.pid}`));
+  const handleDetailsBtn = () => navigate((`/product/${props.id}`));
 
   return (
     <Card sx={{ width: 345, margin: "10px", backgroundColor: "secondary", overflow: "hidden", '&:hover': { transform: "scale(1.03);", transition: "all .2s ease-in-out", cursor: "pointer" } }}>

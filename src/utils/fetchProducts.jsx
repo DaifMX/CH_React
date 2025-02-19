@@ -5,7 +5,7 @@ export function getProductById (id) {
   let productReturn;
 
   for (const product of products) {
-    if(product.pid == id){
+    if(product.id == id){
       productReturn = product
     }
   }
